@@ -1,0 +1,18 @@
+<div class="modal-window">
+    <h2>
+        {{title}}
+        <fa-icon [icon]="faWindowClose" class="modal-window_close-btn" (click)="closeModalWindow()"></fa-icon>
+    </h2>
+    <form [formGroup]="noteForm">
+        <div class="form-group">
+            <label>Заголовок заметки: </label>
+            <input class="form-control" name="noteHeader" formControlName="noteHeader" />
+        </div>
+        <div class="form-group">
+            <label>Текст заметки: </label>
+            <p><input class="input-note-content" name="noteContent" formControlName="noteContent" />
+            </p>
+        </div>
+        <button type="button" class="modal-window_add-btn" (click)="addNewNote()">Добавить</button>
+    </form>
+</div>

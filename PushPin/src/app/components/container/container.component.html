@@ -1,0 +1,9 @@
+<div *ngIf='arrayOfSections.length!=0' class="sections-container" cdkDropList 
+cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+<app-section *ngFor="let section of arrayOfSections; index as i" [(sectionId)] = "section.id"
+ class="dragged-section"cdkDrag></app-section>
+</div>
+<router-outlet></router-outlet> 
+<div class="new-section-container">
+    <fa-icon class="new-section-container_add-section" [icon]="faPlus" (click)="addNewSection()" id="addSection"></fa-icon>
+</div>

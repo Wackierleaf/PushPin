@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div [ngStyle]="{display: isEdit ? 'none' : 'inline'}">
+        <div class="content-container">
+            <p class="content-container_note-title"><b>{{note.noteHeader}}</b></p>
+            <p class="content-container_note-text">{{note.noteContent}}</p>
+        </div>
+        <div class="info-managing-container">
+            <p class="info-managing-container_date">{{note.noteCreationDate | date: "dd.MM.yyyy HH:mm"}}</p>
+            <fa-icon class="info-managing-container_edit" [icon]="faEdit" (click)="isEdit=true"></fa-icon>
+            <fa-icon class="info-managing-container_delete" [icon]="faTrashAlt" (click)=deleteNote()></fa-icon>
+        </div>
+    </div>
+    <form [formGroup]="noteForm" [ngStyle]="{display: isEdit ? 'block' : 'none'}">
+        <div class="form-group">
+            <label>Заголовок заметки: </label>
+            <input class="form-control" name="noteHeader" formControlName="noteHeader" />
+        </div>
+        <div class="form-group">
+            <label>Текст заметки: </label>
+            <p><textarea rows="3" cols="40" name="text" formControlName="noteContent"></textarea></p>
+        </div>
+        <div class="form-group">
+            <input type="datetime-local" formControlName='noteCreationDate' />
+        </div>
+        <button type="button" class="modal-window_add-btn" (click) = editNote()>Изменить</button>
+        <button type="button" class="modal-window_add-btn" (click)="isEdit = false">Отмена</button>
+    </form>
+</div>

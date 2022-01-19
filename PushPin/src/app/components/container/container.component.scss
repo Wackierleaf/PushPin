@@ -1,0 +1,37 @@
+@import "../../../assets/colors/colors.scss";
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: space-between;
+    width: 100vw;
+    height: 95vh;
+    .new-section-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: 90vh;
+        border: 1px solid $gray-olive;
+        margin: 5px;
+        &_add-section {
+            color: $dull-gray;
+            font-size: 36pt;
+        }
+    }
+    .sections-container{
+        display: inherit;
+    }
+    .cdk-drag-placeholder {
+        opacity: 0;
+      }
+      
+    .sections-container.cdk-drop-list-dragging .dragged-section:not(.cdk-drag-placeholder) {
+        transition: transform 550ms cubic-bezier(0, 0, 0.2, 1);
+      }
+}
+.cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  }

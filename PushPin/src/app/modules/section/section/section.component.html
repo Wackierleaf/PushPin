@@ -1,0 +1,53 @@
+<div class="main-container">
+  <div class="dropdown-container" [ngStyle]="{display: isVisible ? 'flex' : 'none'}">
+    <form [formGroup]="sectionForm" novalidate>
+      <div class="form-group">
+        <label>{{'Заголовок секции:'| translate}}</label>
+        <input class="section-header-input" name="sectionHeader" formControlName="sectionHeader" />
+        <br><label>Цвет секции: </label>
+        <input class="color-input" type="color" list="colors" formControlName="sectionColor" />
+        <br> <label>Фильтрация:</label>
+        <br><label>По дате: </label>
+        <fa-icon [icon]="faArrowUp"></fa-icon>
+        <input class="custom-radio" type="radio" name="sort" (change)="notesSorting(true)" [id]="section.id+'rb1'" />
+        <label [for]="section.id+'rb1'"></label>
+        <fa-icon [icon]="faArrowDown"></fa-icon>
+        <input class="custom-radio" type="radio" name="sort" (change)="notesSorting(false)" [id]="section.id+'rb2'" />
+        <label [for]="section.id+'rb2'"></label>
+        <input class="custom-checkbox" type="checkbox"  (change)="notesFilter($event, 'even')"
+          [id]="section.id+'cb1'" />
+        <label [for]="section.id+'cb1'">Четные числа</label>
+        <input class="custom-checkbox" type="checkbox"  (change)="notesFilter($event, 'odd')" [id]="section.id +'cb2'" />
+        <label [for]="section.id+'cb2'">Нечетные числа</label>
+      </div>
+    </form>
+    <datalist id="colors">
+
+      <option value="#add19a">
+
+      <option value="#8ecdf6">
+
+      <option value="#9786bd">
+
+      <option value="#e296bf">
+
+    </datalist>
+    <div class="form-btn-container">
+      <button type="button" class="form-btn-container_edit-btn" (click)="editSection ()">Изменить</button>
+      <button type="button" class="form-btn-container_delete-btn" (click)="deleteSection()">Удалить</button>
+    </div>
+  </div>
+  <div class="title-container" [style.background-color]='section.color'>
+    <fa-icon [icon]="faEllipsisV" class="title-container_element"></fa-icon>
+    <div class="title-container_element">{{section.sectionTitle}}</div>
+    <fa-icon [icon]="faCogs" class="title-container_element" (click)="isVisible = isVisible?false : true"></fa-icon>
+  </div>
+  <div class="notes-container" cdkDropList (cdkDropListDropped)="drop($event)">
+    <app-note *ngFor="let note of section.notes; let i =index" [(sectionId)]='section.id'
+      [(noteId)]='section.notes[i].id' cdkDrag class="dragged-note">
+    </app-note>
+    <div class="add-container">
+      <fa-icon class="add-container_new-note" [icon]="faPlus" (click)=addNewNote()></fa-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal-window">
+    <h2>
+        {{title}}
+        <fa-icon [icon]="faWindowClose" class="modal-window_close-btn" (click)="closeModalWindow()" id="modal-section-close-btn"></fa-icon>
+    </h2>
+    <form [formGroup]="sectionForm" novalidate>
+        <div class="form-group">
+            <label>Заголовок секции: </label>
+            <input class="form-control" name="section-header" formControlName="sectionHeader" />
+            <label>Цвет секции: </label>
+            <input class="color-input" type="color" name="section-color" list="colors" formControlName="sectionColor" />
+        </div>
+        <button type="button" class="modal-window_add-btn" name="modal-add-section" (click)="addSection()">Добавить</button>
+    </form>
+    <datalist id="colors">
+
+        <option value="#add19a">
+
+        <option value="#8ecdf6">
+
+        <option value="#9786bd">
+
+        <option value="#e296bf">
+
+    </datalist>
+</div>
